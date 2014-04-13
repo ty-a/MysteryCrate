@@ -1,0 +1,16 @@
+name: Mystery Crate
+main: com.faceyspacies.MysteryCrate.MysteryCrate
+version: 1.0
+author: tehTyA
+
+commands:
+   crate:
+      description: gives [player] a Mystery Crate. If player isn't specified, command user gets one.
+      usage: /crate give [player]
+      permission: MysteryCrate.crate
+      permission-message: You don't have permission to use the crate command
+      
+permissions:
+   MysteryCrate.crate:
+      description: Allows one to give out Mystery Crates
+      default: op
