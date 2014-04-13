@@ -39,9 +39,16 @@ public final class MysteryCrateListener implements Listener {
 		
 		Player player = event.getPlayer();
 		ItemStack handItem = player.getItemInHand();
-	    
-		if(handItem.getItemMeta().getDisplayName() == null)
+		
+		if(handItem == null) 
 			return;
+	    
+		if(handItem.getItemMeta() != null) {
+			if(handItem.getItemMeta().getDisplayName() == null)
+				return;
+		} else {
+			return;
+		}
 		
 		if(handItem.getItemMeta().getDisplayName().equals("Mystery Crate")) {
 			
