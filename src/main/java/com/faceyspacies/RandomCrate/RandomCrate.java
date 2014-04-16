@@ -12,7 +12,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVE
 FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.faceyspacies.MysteryCrate;
+package com.faceyspacies.RandomCrate;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,7 +28,7 @@ import java.util.Scanner;
 import org.bukkit.Material;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class MysteryCrate extends JavaPlugin {
+public final class RandomCrate extends JavaPlugin {
 	
 	protected static List<Material> itemList = new ArrayList<Material>();
 	protected static int numberOfItems = 0;
@@ -37,17 +37,17 @@ public final class MysteryCrate extends JavaPlugin {
 	public void onEnable() {
 		
 		try {
-			Scanner input = new Scanner(new File(getDataFolder() + File.separator + "MysteryCrateItems.txt"));
+			Scanner input = new Scanner(new File(getDataFolder() + File.separator + "RandomCrateItems.txt"));
 			fillItemList(input);
 			input.close();
 			
 		} catch (FileNotFoundException e) {
-			getLogger().info("MysteryCrateItems.txt not found. Creating new file.");
+			getLogger().info("RandomCrateItems.txt not found. Creating new file.");
 			getDataFolder().mkdir();
 			Writer newFile = null;
 			try {
 					newFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(getDataFolder() + 
-							File.separator + "MysteryCrateItems.txt")));
+							File.separator + "RandomCrateItems.txt")));
 					
 					newFile.write("Diamond\n");
 					newFile.write("Egg\n");
@@ -56,15 +56,15 @@ public final class MysteryCrate extends JavaPlugin {
 					newFile.close();
 					
 					fillItemList(new Scanner(new File(getDataFolder() + 
-							File.separator + "MysteryCrateItems.txt")));
+							File.separator + "RandomCrateItems.txt")));
 			}
 			catch (IOException ex) {
-				getLogger().info("Couldn't create MysteryCrateItems.txt; Will not be able to open Mystery Crates");
+				getLogger().info("Couldn't create RandomCrateItems.txt; Will not be able to open Mystery Crates");
 			}
 		}
 		
-		getCommand("crate").setExecutor(new MysteryCrateCommandExecutor());
-		getServer().getPluginManager().registerEvents(new MysteryCrateListener(), this);
+		getCommand("crate").setExecutor(new RandomCrateCommandExecutor());
+		getServer().getPluginManager().registerEvents(new RandomCrateListener(), this);
 	}
 	
 	@Override 

@@ -12,7 +12,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVE
 FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.faceyspacies.MysteryCrate;
+package com.faceyspacies.RandomCrate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,13 +28,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class MysteryCrateCommandExecutor implements CommandExecutor {
+public class RandomCrateCommandExecutor implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("crate")) { // If the player typed /crate then do the following...
 			
-			if(!sender.hasPermission("MysteryCrate.crate")) {
+			if(!sender.hasPermission("RandomCrate.crate")) {
 				sender.sendMessage("You do not have permission to use this command");
 				return false;
 			}

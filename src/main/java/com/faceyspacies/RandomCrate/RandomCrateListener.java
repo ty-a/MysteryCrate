@@ -12,7 +12,7 @@ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVE
 FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
-package com.faceyspacies.MysteryCrate;
+package com.faceyspacies.RandomCrate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,12 +28,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public final class MysteryCrateListener implements Listener {
+public final class RandomCrateListener implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteractBlock(PlayerInteractEvent event) {
 		
-		if(MysteryCrate.numberOfItems == 0) {
+		if(RandomCrate.numberOfItems == 0) {
 			return; // nothing for us to do
 		}
 		
@@ -79,7 +79,7 @@ public final class MysteryCrateListener implements Listener {
 	
 	private ItemStack getRandomItem() {
 		// item starts in the itemList starts at 0
-		int randomNum = (int)((Math.random()) * (MysteryCrate.numberOfItems));
-		return new ItemStack(MysteryCrate.itemList.get(randomNum), 1);
+		int randomNum = (int)((Math.random()) * (RandomCrate.numberOfItems));
+		return new ItemStack(RandomCrate.itemList.get(randomNum), 1);
 	}
 }
