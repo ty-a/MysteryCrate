@@ -75,7 +75,12 @@ public final class RandomCrateListener implements Listener {
 				return;
 			}
 			
-			inventory.addItem(getRandomItem());
+			HashMap<Integer, ItemStack> result = inventory.addItem(getRandomItem());
+			if(result.size() > 0) {
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-inv-full")));
+				return;
+			}
+			
 			player.updateInventory();
 			
 			event.setCancelled(true); // doesn't do an action with it
