@@ -2,8 +2,10 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.faceyspacies</groupId>
   <artifactId>RandomCrate</artifactId>
-  <version>1.01</version>
-  
+  <version>1.1.0</version>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
     <build>
   	<plugins>
   		<plugin>

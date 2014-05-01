@@ -1,12 +1,12 @@
 name: RandomCrate
 main: com.faceyspacies.RandomCrate.RandomCrate
-version: 1.01
+version: 1.1.0
 author: tehTyA
 
 commands:
    crate:
-      description: gives [player] a Mystery Crate. If player isn't specified, command user gets one.
-      usage: /crate give [player]
+      description: gives [player] a Mystery Crate. If player isn't specified, command user gets one. If amount isn't provided, they get 1. 
+      usage: /crate give [player] [amount of crates]
       permission: RandomCrate.crate
       permission-message: You don't have permission to use the crate command
       

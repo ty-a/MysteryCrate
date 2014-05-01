@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,15 +28,22 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class RandomCrateCommandExecutor implements CommandExecutor {
 
+	private JavaPlugin plugin;
+	
+	public RandomCrateCommandExecutor(JavaPlugin plugin) {
+		this.plugin = plugin;
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("crate")) { // If the player typed /crate then do the following...
 			
 			if(!sender.hasPermission("RandomCrate.crate")) {
-				sender.sendMessage("You do not have permission to use this command");
+				sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crates-no-permission")));
 				return false;
 			}
 			
@@ -45,42 +53,55 @@ public class RandomCrateCommandExecutor implements CommandExecutor {
 			
 			if(args[0].equalsIgnoreCase("give")) {
 				Player player;
+				int numberOfCrates = 1;
 				
 				if(args.length < 2) {
 					// sender is the target
 					if(!(sender instanceof Player)) {
-						sender.sendMessage("You must include a player name from the console.");
+						sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crates-console-didnt-give-name")));
 						return false;
 					}
 					
 					player = (Player) sender;
 				}
+				
+
 				// end no set target
 				else 
 					player = Bukkit.getServer().getPlayer(args[1]);
 
 				if(player == null) {
-					sender.sendMessage(args[1] + " is not online.");
+					sender.sendMessage(args[1] + " " + ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-not-online")));
 					return true;
 				}
 				
-				sender.sendMessage("Giving " + player.getName() + " a Mystery Crate.");
-				player.sendMessage("You have been given a Mystery Crate!");
+				if(args.length == 3) {
+					try {
+						numberOfCrates = Integer.parseInt(args[2]);
+					}
+					catch(NumberFormatException ex) {
+						return false;
+					}
+				}
+				
+				sender.sendMessage(player.getName() + ChatColor.translateAlternateColorCodes('&', " " + plugin.getConfig().getString("random-crate-has-been-given")));
+				player.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-given-crate")));
 				// assertion: player is a valid online player now
 				
 				PlayerInventory inventory = player.getInventory();
-				ItemStack item = new ItemStack(Material.CHEST, 1);
+				
+				ItemStack item = new ItemStack(Material.CHEST, numberOfCrates);
 				ItemMeta meta = item.getItemMeta();
 				List<String> lore = new ArrayList<String>();
 				
-				lore.add("Open for a prize!");
-				meta.setDisplayName("Mystery Crate");
+				lore.add(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-lore")));
+				meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-name")));
 				meta.setLore(lore);
 				item.setItemMeta(meta);
 				
 				HashMap<Integer, ItemStack> result = inventory.addItem(item);
 				if(result.size() > 0) {
-					sender.sendMessage("Target's inventory is full");
+					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-inv-full")));
 				}
 			} else {
 				return false;

@@ -1,0 +1,79 @@
+#Should we check for updates to the plugin? 
+# If an update is found, the console will report it when the plugin is loaded.
+check-for-updates: true
+
+#Should we auto-update the plugin?
+#The new version will be downloaded and used once the server reloads or restarts
+#If this is true, check-for-updates is assumed to be true
+auto-update: true
+
+
+# These are all the messages used by the plugin.
+# Supports & color codes
+random-crate-name: Mystery Crate
+random-crate-open-msg: You open a Mystery Crate!
+random-crate-dont-have-msg: You don't have a Mystery Crate!
+random-crate-lore: Open for a prize!
+random-crate-given-crate: You have been given a Mystery Crate!
+random-crate-inv-full: Target's inventory is full.
+random-crate-has-been-given: has been given a Mystery Crate.
+random-crate-not-online: is not online
+random-crates-no-permission: You are not allowed to give Mystery Crates to players
+random-crates-console-didnt-give-name: You must include a player name from the console.
+
+#There are three rarity types
+# vrare (Very Rare)
+# rare (Rare)
+# common (Common)
+# 
+# The default config below will give you a very rare item 3% of the time
+# a rare item 17% of the time
+# and a common item 80% of the time
+# please ensure your count equals up to 100 or blank slots will be given
+
+vrare-rarity: 3
+rare-rarity: 17
+common-rarity: 80
+
+
+#item-list
+# check the example below for usage. You can specify a few things
+#
+# the amount it is given
+#
+# the lore of the item
+#
+# the rarity type - common, rare, vrare
+#
+# how often it occurs in that rarity type. 5 == 5% of the time in that group
+#     for all items in the group, it should equal 100. 
+#
+# the type of enchantment
+# legal enchantment values are located at http://jd.bukkit.org/rb/apidocs/org/bukkit/enchantments/Enchantment.html
+#
+# the enchantment level
+# for the maximum levels allowed, check out http://minecraft.gamepedia.com/Enchanting#Enchantments
+# If you go over the maximum level, it will default to the maximum level. If level is not given, assumed 1.
+#
+# You can specify either the item name or the item ID. 
+
+item-list:
+  1:
+    rarity-type: rare
+    amount: 5
+    lore: Not yer average stone!
+    rarity: 100
+    name: Magic stone
+  Diamond pickaxe:
+    amount: 5
+    lore: Very Fortune Pick
+    rarity-type: vrare
+    rarity: 100
+    name: many fortune, wow
+    enchantment: LOOT_BONUS_BLOCKS 
+    enchantment-level: 3
+  98:
+    amount: 3
+    lore: Stone Bricks of Holiness
+    rarity-type: common
+    rarity: 100
