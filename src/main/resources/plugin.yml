@@ -8,7 +8,7 @@ commands:
       description: gives [player] a Mystery Crate. If player isn't specified, command user gets one. If amount isn't provided, they get 1. 
       usage: /crate give [player] [amount of crates]
       permission: RandomCrate.crate
-      permission-message: You don't have permission to use the crate command
+      permission-message: ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crates-no-permission"))
       
 permissions:
    RandomCrate.crate:
