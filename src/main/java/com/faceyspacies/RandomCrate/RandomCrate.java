@@ -69,7 +69,7 @@ public final class RandomCrate extends JavaPlugin {
 			Updater updater = new Updater(this, 78005, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
 			
 			if(updater.getResult().equals(Updater.UpdateResult.UPDATE_AVAILABLE)) {
-				getLogger().info("A new version of NoEscape is available! Please update soon!");
+				getLogger().info("A new version of Random Crates is available! Please update soon!");
 
 			}
 		}
