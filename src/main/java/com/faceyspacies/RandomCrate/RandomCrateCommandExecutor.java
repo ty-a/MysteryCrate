@@ -94,7 +94,14 @@ public class RandomCrateCommandExecutor implements CommandExecutor {
 				ItemMeta meta = item.getItemMeta();
 				List<String> lore = new ArrayList<String>();
 				
-				lore.add(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-lore")));
+				String fullLore = ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-lore"));
+				int myIndex = 0:
+				final String newLineSyntax = "NEWLINE";
+				while (fullLore.contains(newLineSyntax)) {
+					lore.add(fullLore.substring(0, fullLore.indexOf(newLineSyntax))):
+					fulllLore = fullLore.substring(fullLore.indexOf(newLineSyntax) + 1):
+				}
+				lore.add(fullLore);
 				meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("random-crate-name")));
 				meta.setLore(lore);
 				item.setItemMeta(meta);
